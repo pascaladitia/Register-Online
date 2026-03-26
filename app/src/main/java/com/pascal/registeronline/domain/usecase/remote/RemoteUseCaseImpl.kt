@@ -1,11 +1,13 @@
 package com.pascal.registeronline.domain.usecase.remote
 
 import com.pascal.registeronline.data.remote.dtos.login.LoginBody
+import com.pascal.registeronline.data.remote.dtos.profile.ProfileBody
 import com.pascal.registeronline.data.remote.dtos.register.RegisterBody
 import com.pascal.registeronline.data.repository.RemoteRepository
 import com.pascal.registeronline.domain.mapper.toDomain
 import com.pascal.registeronline.domain.model.Login
 import com.pascal.registeronline.domain.model.Member
+import com.pascal.registeronline.domain.model.Profile
 import com.pascal.registeronline.domain.model.Register
 import com.pascal.registeronline.domain.model.SyncData
 import com.pascal.registeronline.utils.base.SafeApiCall
@@ -29,4 +31,7 @@ class RemoteUseCaseImpl(
 
     override suspend fun getMember(): Flow<List<Member>> =
         safeApiCall { repository.getMember().map { it.toDomain() } }
+
+    override suspend fun profile(body: ProfileBody): Flow<Profile> =
+        safeApiCall { repository.getProfile(body).toDomain() }
 }

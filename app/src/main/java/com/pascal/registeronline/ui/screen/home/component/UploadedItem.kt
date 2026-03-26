@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.pascal.registeronline.R
 import com.pascal.registeronline.domain.model.Member
+import com.pascal.registeronline.utils.maskNumber
 import compose.icons.FeatherIcons
 import compose.icons.feathericons.User
 
@@ -42,12 +43,21 @@ fun UploadedItem(index: Int, member: Member) {
             modifier = Modifier.padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "$index",
-                style = MaterialTheme.typography.bodySmall.copy(
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+            Box(
+                modifier = Modifier
+                    .size(20.dp)
+                    .clip(RoundedCornerShape(4.dp))
+                    .background(MaterialTheme.colorScheme.primary.copy(0.1f))
+                    .padding(2.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "$index",
+                    style = MaterialTheme.typography.labelSmall.copy(
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 )
-            )
+            }
             Spacer(Modifier.width(8.dp))
             Box(
                 modifier = Modifier
@@ -86,14 +96,14 @@ fun UploadedItem(index: Int, member: Member) {
             Spacer(Modifier.width(8.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = member.nik,
+                    text = member.nik.maskNumber(),
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                 )
                 Text(
-                    text = member.phone,
+                    text = member.phone.maskNumber(),
                     style = MaterialTheme.typography.bodySmall.copy(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

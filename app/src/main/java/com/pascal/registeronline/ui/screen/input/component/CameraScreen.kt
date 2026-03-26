@@ -35,10 +35,12 @@ import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import com.pascal.registeronline.R
 import java.io.File
 import java.util.concurrent.Executors
 
@@ -90,13 +92,11 @@ fun CameraScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
 
-        // ================= CAMERA PREVIEW =================
         AndroidView(
             factory = { previewView },
             modifier = Modifier.fillMaxSize()
         )
 
-        // ================= OVERLAY (DARK + HOLE KTP) =================
         Canvas(modifier = Modifier.fillMaxSize()) {
             val overlayColor = Color.Black.copy(alpha = 0.6f)
 
@@ -137,7 +137,7 @@ fun CameraScreen(
         }
 
         Text(
-            text = "Letakkan KTP di dalam kotak",
+            text = stringResource(R.string.label_put_ktp_in_square),
             color = Color.White,
             modifier = Modifier
                 .align(Alignment.Center)

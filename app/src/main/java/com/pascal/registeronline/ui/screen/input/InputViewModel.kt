@@ -99,12 +99,6 @@ class InputViewModel(
         }
     }
 
-    fun setImagePrimary(path: String) =
-        update { copy(ktpFile = path, openCameraPrimary = false) }
-
-    fun setImageSecondary(path: String) =
-        update { copy(ktpFileSecondary = path, openCameraSecondary = false) }
-
     private fun validate(): Boolean {
         val s = uiState.value
         var valid = true

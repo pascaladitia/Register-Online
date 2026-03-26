@@ -93,3 +93,17 @@ fun setMandatoryTitle(option: String?, isMandatory: Boolean = true): AnnotatedSt
         }
     }
 }
+
+fun String.maskNumber(
+    visibleStart: Int = 2,
+    visibleEnd: Int = 2,
+    maskChar: Char = '*'
+): String {
+    if (length <= visibleStart + visibleEnd) return this
+
+    val start = take(visibleStart)
+    val end = takeLast(visibleEnd)
+    val masked = maskChar.toString().repeat(length - visibleStart - visibleEnd)
+
+    return start + masked + end
+}

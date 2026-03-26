@@ -59,7 +59,7 @@ fun DateRangePickerDialog(
                         startDate = dateRangePickerState.selectedStartDateMillis ?: startDate
                         endDate = dateRangePickerState.selectedEndDateMillis ?: endDate
 
-                        val formatter = SimpleDateFormat("yyyy-mm-dd", Locale.ROOT)
+                        val formatter = SimpleDateFormat("DD/MM/YY", Locale.ROOT)
                         onConfirm(formatter.format(Date(startDate)), formatter.format(Date(endDate)))
 
                         val totalMillis = endDate - startDate
@@ -92,6 +92,9 @@ fun DateRangePickerDialog(
                     )
                 },
                 showModeToggle = false,
+                colors = DatePickerDefaults.colors(
+                    containerColor = MaterialTheme.colorScheme.background
+                ),
                 modifier = Modifier.height(height = 500.dp)
             )
         }

@@ -1,6 +1,5 @@
 package com.pascal.registeronline.ui.screen.input
 
-import android.R.attr.text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -20,7 +19,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardBackspace
 import androidx.compose.material.icons.filled.CameraAlt
-import androidx.compose.material.icons.filled.KeyboardBackspace
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
@@ -30,12 +28,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.pascal.registeronline.R
 import com.pascal.registeronline.ui.component.form.FormBasicComponent
 import com.pascal.registeronline.ui.component.form.FormClickedComponent
 import com.pascal.registeronline.ui.screen.input.state.InputUiState
@@ -70,7 +69,7 @@ fun InputScreen(
                 Spacer(Modifier.width(16.dp))
 
                 Text(
-                    text = "Tambah Data",
+                    text = stringResource(R.string.label_add_data),
                     style = MaterialTheme.typography.titleMedium
                 )
 
@@ -79,7 +78,7 @@ fun InputScreen(
             Spacer(Modifier.height(24.dp))
 
             Text(
-                text = "Data Utama",
+                text = stringResource(R.string.label_primary_data),
                 style = MaterialTheme.typography.titleLarge.copy(
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -90,7 +89,10 @@ fun InputScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.primary.copy(0.2f), RoundedCornerShape(8.dp))
+                    .background(
+                        MaterialTheme.colorScheme.primary.copy(0.2f),
+                        RoundedCornerShape(8.dp)
+                    )
                     .padding(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -106,7 +108,7 @@ fun InputScreen(
                 Spacer(Modifier.width(16.dp))
 
                 Text(
-                    text = "Nomor Handphone, Nik, Foto KTP, dan Foto Diri wajib diisi sebelum disimpan & di-upload",
+                    text = stringResource(R.string.message_prepare_input_data),
                     style = MaterialTheme.typography.labelSmall.copy(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -117,8 +119,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormBasicComponent(
-                title = setMandatoryTitle("Nomor Handphone"),
-                hintText = "Masukkan nomor handlphone",
+                title = setMandatoryTitle(stringResource(R.string.label_handphone)),
+                hintText = stringResource(R.string.hint_handphone_number),
                 value = uiState.phone,
                 onValueChange = event.setPhone,
                 isError = uiState.phoneError,
@@ -128,8 +130,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormBasicComponent(
-                title = setMandatoryTitle("NIK"),
-                hintText = "Masukkan NIK",
+                title = setMandatoryTitle(stringResource(R.string.label_nik)),
+                hintText = stringResource(R.string.hint_nik),
                 value = uiState.nik,
                 onValueChange = event.setNik,
                 isError = uiState.nikError,
@@ -139,7 +141,7 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             Text(
-                text = setMandatoryTitle("Foto KTP"),
+                text = setMandatoryTitle(stringResource(R.string.label_photo_ktp)),
                 style = MaterialTheme.typography.labelSmall.copy(
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -148,7 +150,7 @@ fun InputScreen(
             Spacer(Modifier.height(8.dp))
 
             Text(
-                text = "Ambil 2 foto KTP untuk hasil yang lebih baik. Pastikan KTP terlihat jelas dan tidak blur",
+                text = stringResource(R.string.message_prepare_take_ktp),
                 style = MaterialTheme.typography.labelSmall.copy(
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -173,7 +175,7 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             Text(
-                text = "Informasi Lainnya",
+                text = stringResource(R.string.label_more_info),
                 style = MaterialTheme.typography.titleLarge.copy(
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -182,8 +184,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormBasicComponent(
-                title = AnnotatedString("Nama Lengkap"),
-                hintText = "Masukkan nama sesuai KTP",
+                title = AnnotatedString(stringResource(R.string.label_name)),
+                hintText = stringResource(R.string.hint_name),
                 value = uiState.name,
                 onValueChange = event.setName,
                 isError = uiState.nameError
@@ -192,8 +194,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormBasicComponent(
-                title = AnnotatedString("Tempat Lahir"),
-                hintText = "Masukkan tempat lahir sesuai KTP",
+                title = AnnotatedString(stringResource(R.string.label_place_of_birth)),
+                hintText = stringResource(R.string.hint_place_of_birth),
                 value = uiState.birthPlace,
                 onValueChange = event.setBirthPlace,
                 isError = false
@@ -202,8 +204,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormBasicComponent(
-                title = AnnotatedString("Tanggal Lahir"),
-                hintText = "DD/MM/YY",
+                title = AnnotatedString(stringResource(R.string.label_date_birth)),
+                hintText = stringResource(R.string.hint_date_birth),
                 value = uiState.birthDate,
                 onValueChange = event.setBirthDate,
                 isError = false
@@ -212,8 +214,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormClickedComponent(
-                title = AnnotatedString("Jenis Kelamin"),
-                hintText = "Pilih Jenis Kelamin",
+                title = AnnotatedString(stringResource(R.string.label_gender)),
+                hintText = stringResource(R.string.label_choose_gender),
                 value = uiState.gender,
                 onIconClick = event.openGender
             )
@@ -221,8 +223,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormClickedComponent(
-                title = AnnotatedString("Status"),
-                hintText = "Pilih",
+                title = AnnotatedString(stringResource(R.string.label_status)),
+                hintText = stringResource(R.string.label_choose_status),
                 value = uiState.status,
                 onIconClick = event.openStatus
             )
@@ -230,8 +232,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormClickedComponent(
-                title = AnnotatedString("Pekerjaan"),
-                hintText = "Pilih",
+                title = AnnotatedString(stringResource(R.string.label_job)),
+                hintText = stringResource(R.string.label_choose_job),
                 value = uiState.occupation,
                 onIconClick = event.openPekerjaan
             )
@@ -241,15 +243,15 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             Text(
-                text = "Informasi Alamat KTP",
+                text = stringResource(R.string.label_information_address_ktp),
                 style = MaterialTheme.typography.titleLarge.copy(
                     color = MaterialTheme.colorScheme.primary
                 )
             )
 
             FormBasicComponent(
-                title = AnnotatedString("Alamat"),
-                hintText = "Masukkan Alamat",
+                title = AnnotatedString(stringResource(R.string.label_address)),
+                hintText = stringResource(R.string.hint_address),
                 value = uiState.address,
                 onValueChange = event.setAddress,
                 isError = false
@@ -258,8 +260,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormBasicComponent(
-                title = AnnotatedString("Provinsi"),
-                hintText = "Masukkan Provinsi",
+                title = AnnotatedString(stringResource(R.string.label_province)),
+                hintText = stringResource(R.string.hint_province),
                 value = uiState.provinsi,
                 onValueChange = event.setProvinsi,
                 isError = false
@@ -269,8 +271,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormBasicComponent(
-                title = AnnotatedString("Kota/Kabupaten"),
-                hintText = "Masukkan Kota/Kabupaten",
+                title = AnnotatedString(stringResource(R.string.label_regency)),
+                hintText = stringResource(R.string.hint_regency),
                 value = uiState.kotaKabupaten,
                 onValueChange = event.setKota,
                 isError = false
@@ -279,8 +281,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormBasicComponent(
-                title = AnnotatedString("Kecamatan"),
-                hintText = "Masukkan Kecamatan",
+                title = AnnotatedString(stringResource(R.string.label_subdistrict)),
+                hintText = stringResource(R.string.hint_subdistrict),
                 value = uiState.kecamatan,
                 onValueChange = event.setKecamatan,
                 isError = false
@@ -289,8 +291,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormBasicComponent(
-                title = AnnotatedString("Kelurahan"),
-                hintText = "Masukkan Kelurahan",
+                title = AnnotatedString(stringResource(R.string.label_district)),
+                hintText = stringResource(R.string.hint_district),
                 value = uiState.kelurahan,
                 onValueChange = event.setKelurahan,
                 isError = false
@@ -299,8 +301,8 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             FormBasicComponent(
-                title = AnnotatedString("Kode Pos"),
-                hintText = "Masukkan Kode Pos",
+                title = AnnotatedString(stringResource(R.string.label_postal_code)),
+                hintText = stringResource(R.string.hint_postal_code),
                 value = uiState.kodePos,
                 onValueChange = event.setKodePos,
                 isError = false,
@@ -312,7 +314,7 @@ fun InputScreen(
             Spacer(Modifier.height(16.dp))
 
             Text(
-                text = "Alamat Domisili",
+                text = stringResource(R.string.label_address_domicily),
                 style = MaterialTheme.typography.titleLarge.copy(
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -325,7 +327,7 @@ fun InputScreen(
                 )
 
                 Text(
-                    text = "Alamat domisili sama dengan alamt pada KTP",
+                    text = stringResource(R.string.message_domicili),
                     style = MaterialTheme.typography.bodySmall.copy(
                         color = MaterialTheme.colorScheme.primary
                     )
@@ -334,7 +336,7 @@ fun InputScreen(
 
             if (!uiState.isSameAddress) {
                 FormBasicComponent(
-                    title = AnnotatedString("Alamat Domisili"),
+                    title = AnnotatedString(stringResource(R.string.label_address_domicili)),
                     hintText = "",
                     value = uiState.alamatDomisili,
                     onValueChange = event.setDomisili,
@@ -350,7 +352,7 @@ fun InputScreen(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = event.saveDraft
             ) {
-                Text("Simpan sebagai Draft")
+                Text(stringResource(R.string.label_save_as_draft))
             }
         }
     }
