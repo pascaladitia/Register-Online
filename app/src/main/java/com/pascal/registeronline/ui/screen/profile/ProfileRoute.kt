@@ -18,7 +18,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.automirrored.filled.KeyboardBackspace
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Password
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -146,7 +148,7 @@ fun ProfileScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(8.dp))
-                    .background(MaterialTheme.colorScheme.primary.copy(0.2f))
+                    .background(MaterialTheme.colorScheme.primary.copy(0.1f))
             ) {
                 ProfileFeature(
                     icon = Icons.Default.Password,
@@ -165,11 +167,11 @@ fun ProfileScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(8.dp))
-                    .background(MaterialTheme.colorScheme.primary.copy(0.2f))
+                    .background(MaterialTheme.colorScheme.primary.copy(0.1f))
             ) {
                 ProfileFeature(
-                    icon = Icons.Default.Password,
-                    label = "Ganti Password",
+                    icon = Icons.AutoMirrored.Filled.Logout,
+                    label = "Keluar",
                     color = MaterialTheme.colorScheme.error,
                     onClick = {
                         event.onLogout()
