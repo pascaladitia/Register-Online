@@ -21,7 +21,7 @@ import com.pascal.registeronline.data.prefs.PreferencesLogin
 import com.pascal.registeronline.ui.screen.home.HomeRoute
 import com.pascal.registeronline.ui.screen.input.InputRoute
 import com.pascal.registeronline.ui.screen.login.LoginRoute
-import com.pascal.registeronline.ui.screen.profile.ProfileScreen
+import com.pascal.registeronline.ui.screen.profile.ProfileRoute
 import com.pascal.registeronline.ui.screen.register.RegisterRoute
 import com.pascal.registeronline.ui.screen.splash.SplashScreen
 
@@ -85,7 +85,9 @@ fun RouteScreen(
                         onAddData = {
                             navController.navigate(Screen.InputScreen.route)
                         },
-                        onEditDraft = {}
+                        onProfile = {
+                            navController.navigate(Screen.ProfileScreen.route)
+                        }
                     )
                 }
                 composable(route = Screen.InputScreen.route) {
@@ -96,8 +98,18 @@ fun RouteScreen(
                     )
                 }
                 composable(route = Screen.ProfileScreen.route) {
-                    ProfileScreen(
-                        onBookMark = {},
+                    ProfileRoute(
+                        onNavBack = {
+                            navController.popBackStack()
+                        },
+                        onLogout = {
+                            navController.navigate(Screen.LoginScreen.route) {
+                                popUpTo(Screen.LoginScreen.route) {
+                                    inclusive = true
+                                }
+                                launchSingleTop = true
+                            }
+                        },
                     )
                 }
             }
