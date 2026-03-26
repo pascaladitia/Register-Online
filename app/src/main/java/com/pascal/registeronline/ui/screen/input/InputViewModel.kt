@@ -60,8 +60,44 @@ class InputViewModel(
     fun selectPekerjaan(index: Int, value: String) =
         update { copy(occupation = value, isPekerjaanSheet = false to index) }
 
-    fun openCameraPrimary() = update { copy(openCameraPrimary = true) }
-    fun openCameraSecondary() = update { copy(openCameraSecondary = true) }
+    fun openCameraPrimary() = update {
+        copy(openCameraPrimary = true, isPrimaryCamera = true)
+    }
+
+    fun openCameraSecondary() = update {
+        copy(openCameraSecondary = true, isPrimaryCamera = false)
+    }
+
+    fun onCapture(path: String) = update {
+        copy(
+            previewImage = path,
+            isPreview = true,
+            openCameraPrimary = false,
+            openCameraSecondary = false
+        )
+    }
+
+    fun retakePhoto() = update {
+        copy(
+            isPreview = false,
+            openCameraPrimary = isPrimaryCamera,
+            openCameraSecondary = !isPrimaryCamera
+        )
+    }
+
+    fun confirmPhoto() = update {
+        if (isPrimaryCamera) {
+            copy(
+                ktpFile = previewImage,
+                isPreview = false
+            )
+        } else {
+            copy(
+                ktpFileSecondary = previewImage,
+                isPreview = false
+            )
+        }
+    }
 
     fun setImagePrimary(path: String) =
         update { copy(ktpFile = path, openCameraPrimary = false) }

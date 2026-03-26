@@ -1,12 +1,16 @@
 package com.pascal.registeronline.ui.screen.input
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import com.pascal.registeronline.ui.component.dialog.ShowDialog
 import com.pascal.registeronline.ui.component.screenUtils.SelectedBottomSheet
 import com.pascal.registeronline.ui.screen.input.component.CameraScreen
+import com.pascal.registeronline.ui.screen.input.component.PreviewKtpScreen
 import com.pascal.registeronline.ui.screen.input.state.InputEvent
 import com.pascal.registeronline.ui.screen.input.state.LocalInputEvent
 import org.koin.androidx.compose.koinViewModel
@@ -86,14 +90,6 @@ fun InputRoute(
         )
     }
 
-    if (uiState.openCameraPrimary) {
-        CameraScreen { viewModel.setImagePrimary(it) }
-    }
-
-    if (uiState.openCameraSecondary) {
-        CameraScreen { viewModel.setImageSecondary(it) }
-    }
-
     if (uiState.error.first) {
         ShowDialog(
             message = uiState.error.second,
@@ -115,6 +111,23 @@ fun InputRoute(
     CompositionLocalProvider(
         LocalInputEvent provides event
     ) {
-        InputScreen(uiState = uiState)
+        Box {
+            InputScreen(uiState = uiState)
+
+            if (uiState.openCameraPrimary || uiState.openCameraSecondary) {
+                CameraScreen(
+                    onResult = { viewModel.onCapture(it) },
+                    onBack = { viewModel.retakePhoto() }
+                )
+            }
+
+            if (uiState.isPreview) {
+                PreviewKtpScreen(
+                    imagePath = uiState.previewImage,
+                    onUse = { viewModel.confirmPhoto() },
+                    onRetake = { viewModel.retakePhoto() }
+                )
+            }
+        }
     }
 }

@@ -40,5 +40,9 @@ data class InputUiState(
     val isPekerjaanSheet: Pair<Boolean, Int> = false to -1,
 
     val openCameraPrimary: Boolean = false,
-    val openCameraSecondary: Boolean = false
+    val openCameraSecondary: Boolean = false,
+
+    val previewImage: String = "",
+    val isPreview: Boolean = false,
+    val isPrimaryCamera: Boolean = true
 )
