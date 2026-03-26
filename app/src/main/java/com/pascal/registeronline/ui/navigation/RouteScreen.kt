@@ -80,7 +80,10 @@ fun RouteScreen(
                     )
                 }
                 composable(route = Screen.HomeScreen.route) {
-                    HomeRoute()
+                    HomeRoute(
+                        onTambahData = {},
+                        onEditDraft = {}
+                    )
                 }
                 composable(route = Screen.ProfileScreen.route) {
                     ProfileScreen(

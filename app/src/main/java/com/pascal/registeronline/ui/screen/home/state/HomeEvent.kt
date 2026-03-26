@@ -7,6 +7,13 @@ val LocalHomeEvent = compositionLocalOf { HomeEvent() }
 
 @Stable
 data class HomeEvent(
-    val onAudio: (String?) -> Unit = {},
-    val onShare: (String?) -> Unit = {}
+    val onProfile: () -> Unit = {},
+    val onTabSelected: (Int) -> Unit = {},
+    val onAddData: () -> Unit = {},
+    val onEditDraft: (Int) -> Unit = {},
+    val onUploadDraft: (Int) -> Unit = {},
+    val onShowUploadAllDialog: () -> Unit = {},
+    val onDismissUploadAllDialog: () -> Unit = {},
+    val onConfirmUploadAll: () -> Unit = {},
+    val onDismissError: () -> Unit = {},
 )

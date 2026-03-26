@@ -70,6 +70,7 @@ class LoginViewModel(
                 .collect {
 
                     PreferencesLogin.saveIsLogin(context, true)
+                    PreferencesLogin.saveEmail(context, email)
                     PreferencesLogin.savePassword(context, password)
                     PreferencesLogin.saveAccessToken(context, it.token)
 

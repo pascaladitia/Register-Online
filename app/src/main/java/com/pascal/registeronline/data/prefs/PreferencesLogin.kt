@@ -9,6 +9,7 @@ object PreferencesLogin {
     private const val PREFS_NAME = "login_prefs"
     private const val IS_SAVE_LOGIN = "is_save_login"
     private const val ACCESS_TOKEN = "access_token"
+    private const val EMAIL = "email"
     private const val PASSWORD = "password"
 
     private fun prefs(context: Context) =
@@ -24,6 +25,9 @@ object PreferencesLogin {
     fun saveAccessToken(context: Context, accessToken: String) =
         edit(context) { putString(ACCESS_TOKEN, accessToken) }
 
+    fun saveEmail(context: Context, email: String) =
+        edit(context) { putString(EMAIL, email) }
+
     fun savePassword(context: Context, password: String) =
         edit(context) { putString(PASSWORD, password) }
 
@@ -32,6 +36,9 @@ object PreferencesLogin {
 
     fun getIsLogin(context: Context): Boolean =
         prefs(context).getBoolean(IS_SAVE_LOGIN, false)
+
+    fun getEmail(context: Context): String =
+        prefs(context).getString(EMAIL, "") ?: ""
 
     fun getPassword(context: Context): String =
         prefs(context).getString(PASSWORD, "") ?: ""

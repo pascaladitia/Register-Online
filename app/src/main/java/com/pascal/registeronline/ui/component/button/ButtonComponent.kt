@@ -85,13 +85,16 @@ fun ButtonOutlineComponent(
     modifier: Modifier = Modifier,
     text: String,
     isIcon: Int = 0,
+    icon: ImageVector = FeatherIcons.Home,
     color: Color = MaterialTheme.colorScheme.primary,
+    enabled: Boolean = true,
     onClick: () -> Unit
 ) {
     OutlinedIconButton(
         modifier = modifier
             .fillMaxWidth()
             .height(48.dp),
+        enabled = enabled,
         border = BorderStroke(1.dp, color),
         shape = RoundedCornerShape(16.dp),
         onClick = { onClick() },
@@ -100,7 +103,7 @@ fun ButtonOutlineComponent(
             if (isIcon == 1) {
                 Icon(
                     modifier = Modifier.size(24.dp),
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
+                    imageVector = icon,
                     contentDescription = null,
                     tint = color
                 )
@@ -117,7 +120,7 @@ fun ButtonOutlineComponent(
                 Spacer(modifier = Modifier.width(16.dp))
                 Icon(
                     modifier = Modifier.size(24.dp),
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
+                    imageVector = icon,
                     contentDescription = null,
                     tint = color
                 )

@@ -21,4 +21,25 @@
     <string name="hint_full_name">Masukkan nama lengkap</string>
     <string name="label_phone">Nomor Telepon</string>
     <string name="hint_phone">Masukkan nomor telepon</string>
+    <string name="label_tab_draft">Draft</string>
+    <string name="label_tab_uploaded">Sudah Di-Upload</string>
+    <string name="label_tambah_data">+ Tambah Data</string>
+    <string name="label_upload_semua">Upload Semua</string>
+    <string name="label_list_draft">List Draft KTA</string>
+    <string name="label_subtitle_draft">Upload untuk mengirimkan data ini ke admin untuk di-verifikasi.</string>
+    <string name="label_info_upload">Nomor Handphone, NIK, dan Foto KTP wajib diisi sebelum di-upload</string>
+    <string name="label_data_uploaded">Data yang sudah di-upload</string>
+    <string name="label_subtitle_uploaded">Data-data ini sudah dikirimkan ke admin verifikator.</string>
+    <string name="label_status_draft">Draft</string>
+    <string name="label_status_uploaded">Di-upload</string>
+    <string name="label_edit">Edit</string>
+    <string name="label_upload">Upload</string>
+    <string name="label_empty_data">Belum ada data</string>
+    <string name="label_empty_data_subtitle">Klik "Tambah Data" untuk menambahkan data calon anggota</string>
+    <string name="label_upload_success">Data berhasil di-upload</string>
+    <string name="label_upload_all_title">Upload Semua Data</string>
+    <string name="label_upload_all_confirm">Apakah kamu yakin ingin upload semua data?</string>
+    <string name="label_upload_all_subtitle">Pastikan kamu sudah mengisi semua data yang diperlukan dengan benar, ya!</string>
+    <string name="label_upload_all_action">Ya, Upload Semua</string>
+    <string name="label_cancel">Batal</string>
 </resources>
