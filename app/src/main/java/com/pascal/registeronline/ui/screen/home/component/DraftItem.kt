@@ -1,5 +1,6 @@
 package com.pascal.registeronline.ui.screen.home.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,9 +23,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.pascal.registeronline.R
 import com.pascal.registeronline.data.local.entity.DraftEntity
 import compose.icons.FeatherIcons
@@ -49,12 +52,20 @@ fun DraftItem(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "$index",
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(4.dp))
+                        .background(MaterialTheme.colorScheme.primary.copy(0.2f))
+                        .padding(2.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "$index",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
                     )
-                )
+                }
                 Spacer(Modifier.width(8.dp))
                 Box(
                     modifier = Modifier
@@ -63,12 +74,32 @@ fun DraftItem(
                         .background(Color(0xFFEEEEEE)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Icon(
-                        modifier = Modifier.size(20.dp),
-                        imageVector = FeatherIcons.User,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
+                    if (draft.ktpFile.isNotEmpty()) {
+                        AsyncImage(
+                            model = draft.ktpFile,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(56.dp)
+                                .clip(RoundedCornerShape(8.dp)),
+                            contentScale = ContentScale.Crop
+                        )
+                    } else {
+                        Box(
+                            modifier = Modifier
+                                .size(56.dp)
+                                .background(
+                                    MaterialTheme.colorScheme.surfaceVariant,
+                                    RoundedCornerShape(8.dp)
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = FeatherIcons.User,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
                 }
                 Spacer(Modifier.width(8.dp))
                 Column(modifier = Modifier.weight(1f)) {
@@ -119,7 +150,7 @@ fun DraftItem(
                     Spacer(Modifier.width(4.dp))
                     Text(
                         text = stringResource(R.string.label_edit),
-                        style = MaterialTheme.typography.bodySmall.copy(
+                        style = MaterialTheme.typography.titleSmall.copy(
                             color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.Medium
                         ),
@@ -150,7 +181,7 @@ fun DraftItem(
                     Spacer(Modifier.width(4.dp))
                     Text(
                         text = stringResource(R.string.label_upload),
-                        style = MaterialTheme.typography.bodySmall.copy(
+                        style = MaterialTheme.typography.titleSmall.copy(
                             color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.Medium
                         ),

@@ -20,9 +20,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.pascal.registeronline.R
 import com.pascal.registeronline.domain.model.Member
 import compose.icons.FeatherIcons
@@ -54,12 +56,32 @@ fun UploadedItem(index: Int, member: Member) {
                     .background(Color(0xFFEEEEEE)),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    modifier = Modifier.size(20.dp),
-                    imageVector = FeatherIcons.User,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+                if (member.ktpUrl.isNotEmpty()) {
+                    AsyncImage(
+                        model = member.ktpUrl,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(56.dp)
+                            .clip(RoundedCornerShape(8.dp)),
+                        contentScale = ContentScale.Crop
+                    )
+                } else {
+                    Box(
+                        modifier = Modifier
+                            .size(56.dp)
+                            .background(
+                                MaterialTheme.colorScheme.surfaceVariant,
+                                RoundedCornerShape(8.dp)
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = FeatherIcons.User,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
             }
             Spacer(Modifier.width(8.dp))
             Column(modifier = Modifier.weight(1f)) {

@@ -18,7 +18,7 @@ import org.koin.androidx.compose.koinViewModel
 fun HomeRoute(
     viewModel: HomeViewModel = koinViewModel(),
     onAddData: () -> Unit,
-    onEditDraft: (Int) -> Unit,
+    onProfile: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -46,8 +46,9 @@ fun HomeRoute(
         LocalHomeEvent provides HomeEvent(
             onTabSelected = viewModel::onTabSelected,
             onAddData = onAddData,
-            onEditDraft = onEditDraft,
-            onUploadDraft = { /* TODO: single upload */ },
+            onProfile = onProfile,
+            onEditDraft = {},
+            onUploadDraft = viewModel::uploadSingleDraft,
             onShowUploadAllDialog = viewModel::onShowUploadAllDialog,
             onDismissUploadAllDialog = viewModel::onDismissUploadAllDialog,
             onConfirmUploadAll = viewModel::onConfirmUploadAll,

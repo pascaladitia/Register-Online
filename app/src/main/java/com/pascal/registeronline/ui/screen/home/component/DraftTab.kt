@@ -47,6 +47,24 @@ fun DraftTab(drafts: List<DraftEntity>) {
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         item {
+            Text(
+                text = stringResource(R.string.label_list_draft),
+                style = MaterialTheme.typography.titleSmall.copy(
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            Text(
+                text = stringResource(R.string.label_subtitle_draft),
+                style = MaterialTheme.typography.bodySmall.copy(
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(containerColor = Color(0xFFE8F0FE)),
@@ -71,24 +89,6 @@ fun DraftTab(drafts: List<DraftEntity>) {
                     )
                 }
             }
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = stringResource(R.string.label_list_draft),
-                style = MaterialTheme.typography.titleSmall.copy(
-                    color = MaterialTheme.colorScheme.onSurface
-                )
-            )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = stringResource(R.string.label_subtitle_draft),
-                style = MaterialTheme.typography.bodySmall.copy(
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            )
 
             Spacer(modifier = Modifier.height(8.dp))
         }
