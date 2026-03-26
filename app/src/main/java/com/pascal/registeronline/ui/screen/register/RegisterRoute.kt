@@ -3,8 +3,6 @@ package com.pascal.registeronline.ui.screen.register
 import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Build
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.BackHandler
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -32,10 +30,6 @@ fun RegisterRoute(
 ) {
     val context = LocalContext.current
     val uiState by viewModel.uiState.collectAsState()
-
-    BackHandler {
-        (context as? ComponentActivity)?.finish()
-    }
 
     val multiplePermissionState = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         rememberMultiplePermissionsState(
