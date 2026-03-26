@@ -47,7 +47,7 @@ fun HomeRoute(
             onTabSelected = viewModel::onTabSelected,
             onAddData = onAddData,
             onEditDraft = onEditDraft,
-            onUploadDraft = { /* TODO: single upload */ },
+            onUploadDraft = viewModel::uploadSingleDraft,
             onShowUploadAllDialog = viewModel::onShowUploadAllDialog,
             onDismissUploadAllDialog = viewModel::onDismissUploadAllDialog,
             onConfirmUploadAll = viewModel::onConfirmUploadAll,

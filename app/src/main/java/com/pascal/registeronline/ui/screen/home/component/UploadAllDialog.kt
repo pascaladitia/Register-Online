@@ -1,5 +1,6 @@
 package com.pascal.registeronline.ui.screen.home.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -28,6 +30,7 @@ import com.pascal.registeronline.ui.component.button.ButtonComponent
 import com.pascal.registeronline.ui.component.button.ButtonOutlineComponent
 import compose.icons.FeatherIcons
 import compose.icons.feathericons.Upload
+import compose.icons.feathericons.X
 
 @Composable
 fun UploadAllDialog(
@@ -46,21 +49,25 @@ fun UploadAllDialog(
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+                    Icon(
+                        modifier = Modifier
+                            .size(20.dp)
+                            .clickable { onDismiss() },
+                        imageVector = FeatherIcons.X,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+
+                    Spacer(Modifier.width(16.dp))
+
                     Text(
                         text = stringResource(R.string.label_upload_all_title),
                         style = MaterialTheme.typography.titleSmall.copy(
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
-                    )
-                    Icon(
-                        modifier = Modifier.size(20.dp),
-                        imageVector = FeatherIcons.Upload,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
 
