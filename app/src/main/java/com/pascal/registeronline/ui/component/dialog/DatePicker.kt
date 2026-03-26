@@ -125,7 +125,7 @@ fun DatePickerComponent(
                     onDismiss()
                     startDate = dateRangePickerState.selectedDateMillis ?: startDate
 
-                    val formatter = SimpleDateFormat("yyyy-mm-dd", Locale("id"))
+                    val formatter = SimpleDateFormat("dd/MM/yy", Locale("id", "ID"))
                     onConfirm(formatter.format(Date(startDate)))
                 }
             }) {

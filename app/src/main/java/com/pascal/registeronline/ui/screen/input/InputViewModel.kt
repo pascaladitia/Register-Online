@@ -54,6 +54,9 @@ class InputViewModel(
     fun selectStatus(index: Int, value: String) =
         update { copy(status = value, isStatusSheet = false to index) }
 
+    fun openBirthDate() = update { copy(openBirthDate = true) }
+    fun dismissBirthDate() = update { copy(openBirthDate = false) }
+
     fun openPekerjaan() = update { copy(isPekerjaanSheet = true to isPekerjaanSheet.second) }
     fun dismissPekerjaan() = update { copy(isPekerjaanSheet = false to -1) }
 

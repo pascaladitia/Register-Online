@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.pascal.registeronline.R
+import com.pascal.registeronline.ui.component.dialog.DatePickerComponent
 import com.pascal.registeronline.ui.component.dialog.ShowDialog
 import com.pascal.registeronline.ui.component.screenUtils.SelectedBottomSheet
 import com.pascal.registeronline.ui.screen.input.component.CameraScreen
@@ -39,6 +40,7 @@ fun InputRoute(
         setKodePos = viewModel::setKodePos,
         setSameAddress = viewModel::setSameAddress,
         setDomisili = viewModel::setDomisili,
+        openBirthDate = viewModel::openBirthDate,
         openGender = viewModel::openGender,
         openStatus = viewModel::openStatus,
         dismissGender = viewModel::dismissGender,
@@ -89,6 +91,17 @@ fun InputRoute(
                 event.selectPekerjaan(index, item!!)
             },
             onDismiss = event.dismissPekerjaan
+        )
+    }
+
+    if (uiState.openBirthDate) {
+        DatePickerComponent(
+            onDismiss = {
+                viewModel.dismissBirthDate()
+            },
+            onConfirm = {
+                event.setBirthDate(it)
+            }
         )
     }
 

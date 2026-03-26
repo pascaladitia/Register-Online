@@ -41,6 +41,8 @@ import com.pascal.registeronline.ui.screen.input.state.InputUiState
 import com.pascal.registeronline.ui.screen.input.state.LocalInputEvent
 import com.pascal.registeronline.ui.theme.AppTheme
 import com.pascal.registeronline.utils.setMandatoryTitle
+import compose.icons.FeatherIcons
+import compose.icons.feathericons.Calendar
 
 @Composable
 fun InputScreen(
@@ -203,12 +205,12 @@ fun InputScreen(
 
             Spacer(Modifier.height(16.dp))
 
-            FormBasicComponent(
+            FormClickedComponent(
                 title = AnnotatedString(stringResource(R.string.label_date_birth)),
                 hintText = stringResource(R.string.hint_date_birth),
                 value = uiState.birthDate,
-                onValueChange = event.setBirthDate,
-                isError = false
+                icon = FeatherIcons.Calendar,
+                onIconClick = event.openBirthDate
             )
 
             Spacer(Modifier.height(16.dp))
