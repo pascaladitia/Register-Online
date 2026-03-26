@@ -14,6 +14,7 @@ import com.pascal.registeronline.domain.usecase.local.LocalUseCaseImpl
 import com.pascal.registeronline.domain.usecase.remote.RemoteUseCase
 import com.pascal.registeronline.domain.usecase.remote.RemoteUseCaseImpl
 import com.pascal.registeronline.ui.screen.home.HomeViewModel
+import com.pascal.registeronline.ui.screen.input.InputViewModel
 import com.pascal.registeronline.ui.screen.login.LoginViewModel
 import com.pascal.registeronline.ui.screen.profile.ProfileViewModel
 import com.pascal.registeronline.ui.screen.register.RegisterViewModel
@@ -61,5 +62,6 @@ val appModule = module {
     viewModelOf(::LoginViewModel)
     viewModelOf(::RegisterViewModel)
     viewModelOf(::HomeViewModel)
+    viewModelOf(::InputViewModel)
     viewModelOf(::ProfileViewModel)
 }

@@ -19,6 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.pascal.registeronline.data.prefs.PreferencesLogin
 import com.pascal.registeronline.ui.screen.home.HomeRoute
+import com.pascal.registeronline.ui.screen.input.InputRoute
 import com.pascal.registeronline.ui.screen.login.LoginRoute
 import com.pascal.registeronline.ui.screen.profile.ProfileScreen
 import com.pascal.registeronline.ui.screen.register.RegisterRoute
@@ -81,8 +82,17 @@ fun RouteScreen(
                 }
                 composable(route = Screen.HomeScreen.route) {
                     HomeRoute(
-                        onTambahData = {},
+                        onAddData = {
+                            navController.navigate(Screen.InputScreen.route)
+                        },
                         onEditDraft = {}
+                    )
+                }
+                composable(route = Screen.InputScreen.route) {
+                    InputRoute(
+                        onNavBack = {
+                            navController.popBackStack()
+                        }
                     )
                 }
                 composable(route = Screen.ProfileScreen.route) {

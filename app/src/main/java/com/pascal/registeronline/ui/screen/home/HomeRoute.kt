@@ -17,7 +17,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun HomeRoute(
     viewModel: HomeViewModel = koinViewModel(),
-    onTambahData: () -> Unit,
+    onAddData: () -> Unit,
     onEditDraft: (Int) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -45,7 +45,7 @@ fun HomeRoute(
     CompositionLocalProvider(
         LocalHomeEvent provides HomeEvent(
             onTabSelected = viewModel::onTabSelected,
-            onAddData = onTambahData,
+            onAddData = onAddData,
             onEditDraft = onEditDraft,
             onUploadDraft = { /* TODO: single upload */ },
             onShowUploadAllDialog = viewModel::onShowUploadAllDialog,
