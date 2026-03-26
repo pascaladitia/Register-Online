@@ -19,13 +19,40 @@ class LoginViewModel(
     private val _uiState = MutableStateFlow(LoginUiState())
     val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
 
-    fun loadLogin(email: String, password: String) {
+    fun onEmailChange(value: String) {
+        _uiState.update { it.copy(email = value, isEmailError = false) }
+    }
+
+    fun onPasswordChange(value: String) {
+        _uiState.update { it.copy(password = value, isPasswordError = false) }
+    }
+
+    fun onTogglePasswordVisibility() {
+        _uiState.update { it.copy(isPasswordVisible = !it.isPasswordVisible) }
+    }
+
+    fun onSubmit() {
+        val state = _uiState.value
+        val isEmailBlank = state.email.isBlank()
+        val isPasswordBlank = state.password.isBlank()
+
+        if (isEmailBlank || isPasswordBlank) {
+            _uiState.update {
+                it.copy(
+                    isEmailError = isEmailBlank,
+                    isPasswordError = isPasswordBlank
+                )
+            }
+            return
+        }
+
+        loadLogin(state.email, state.password)
+    }
+
+    private fun loadLogin(email: String, password: String) {
         _uiState.update { it.copy(isLoading = true) }
 
-        val body = LoginBody(
-            email = email,
-            password = password
-        )
+        val body = LoginBody(email = email, password = password)
 
         viewModelScope.launch {
             remoteUseCase.login(body)
@@ -36,7 +63,8 @@ class LoginViewModel(
                             error = true to e.message.orEmpty()
                         )
                     }
-                }.collect { result ->
+                }
+                .collect {
                     _uiState.update {
                         it.copy(
                             isLoading = false,

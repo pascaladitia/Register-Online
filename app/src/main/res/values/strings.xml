@@ -10,4 +10,9 @@
     <string name="hint_email">Masukan email</string>
     <string name="label_password">Password</string>
     <string name="hint_password">Masukan password</string>
+    <string name="label_title_login">Masuk ke Akun Verifikator</string>
+    <string name="label_subtitle_login">Masukkan email dan password untuk masuk</string>
+    <string name="label_login">Login</string>
+    <string name="label_dont_have_account">Belum punya akun?</string>
+    <string name="label_register">Register</string>
 </resources>

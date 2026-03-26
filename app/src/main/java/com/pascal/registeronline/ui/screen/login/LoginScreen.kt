@@ -1,7 +1,6 @@
 package com.pascal.registeronline.ui.screen.login
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,20 +13,13 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -51,15 +43,8 @@ fun LoginScreen(
     uiState: LoginUiState = LoginUiState()
 ) {
     val event = LocalLoginEvent.current
-    var user by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var isPasswordVisible by remember { mutableStateOf(false) }
-    var isUserError by remember { mutableStateOf(false) }
-    var isPasswordError by remember { mutableStateOf(false) }
-
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
-
 
     Column(
         modifier = modifier
@@ -79,18 +64,14 @@ fun LoginScreen(
                 .fillMaxSize()
                 .padding(horizontal = 16.dp)
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(id = R.drawable.logo),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )
-
                 Spacer(Modifier.width(16.dp))
-
                 Text(
                     text = stringResource(R.string.app_name),
                     style = MaterialTheme.typography.headlineSmall.copy(
@@ -102,7 +83,7 @@ fun LoginScreen(
             Spacer(Modifier.height(24.dp))
 
             Text(
-                text = "Masuk ke Akun Verifikator",
+                text = stringResource(R.string.label_title_login),
                 style = MaterialTheme.typography.headlineMedium.copy(
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -111,7 +92,7 @@ fun LoginScreen(
             Spacer(Modifier.height(16.dp))
 
             Text(
-                text = "Masukkan email dan password untuk masuk",
+                text = stringResource(R.string.label_subtitle_login),
                 style = MaterialTheme.typography.bodySmall.copy(
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -127,13 +108,10 @@ fun LoginScreen(
                 FormEmailComponent(
                     title = stringResource(R.string.label_email),
                     hintText = stringResource(R.string.hint_email),
-                    value = user,
+                    value = uiState.email,
                     isShowTitle = true,
-                    onValueChange = {
-                        user = it
-                        isUserError = false
-                    },
-                    isError = isUserError
+                    onValueChange = event.onEmailChange,
+                    isError = uiState.isEmailError
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -141,45 +119,22 @@ fun LoginScreen(
                 FormPasswordComponent(
                     title = stringResource(R.string.label_password),
                     hintText = stringResource(R.string.hint_password),
-                    value = password,
+                    value = uiState.password,
                     isShowTitle = true,
-                    onValueChange = {
-                        password = it
-                        isPasswordError = false
-                    },
-                    isError = isPasswordError,
-                    isPasswordVisible = isPasswordVisible,
-                    onIconClick = { isPasswordVisible = !isPasswordVisible }
+                    onValueChange = event.onPasswordChange,
+                    isError = uiState.isPasswordError,
+                    isPasswordVisible = uiState.isPasswordVisible,
+                    onIconClick = event.onTogglePasswordVisibility
                 ) {
-                    if (user.isBlank()) {
-                        isUserError = true
-                    }
-                    if (password.isBlank()) {
-                        isPasswordError = true
-                    }
-
-                    if (user.isNotBlank() && password.isNotBlank()) {
-                        event.onLogin(user, password)
-                        keyboardController?.hide()
-                    }
+                    keyboardController?.hide()
+                    event.onSubmit()
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                ButtonComponent(
-                    text = "Login"
-                ) {
-                    if (user.isBlank()) {
-                        isUserError = true
-                    }
-                    if (password.isBlank()) {
-                        isPasswordError = true
-                    }
-
-                    if (user.isNotBlank() && password.isNotBlank()) {
-                        event.onLogin(user, password)
-                        keyboardController?.hide()
-                    }
+                ButtonComponent(text = stringResource(R.string.label_login)) {
+                    keyboardController?.hide()
+                    event.onSubmit()
                 }
             }
 
@@ -190,16 +145,15 @@ fun LoginScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Belum punya akun?",
+                    text = stringResource(R.string.label_dont_have_account),
                     style = MaterialTheme.typography.bodySmall.copy(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 )
-
                 Spacer(Modifier.width(8.dp))
-
                 Text(
-                    text = "Klik Bantuan",
+                    modifier = Modifier.clickable { event.onRegister() },
+                    text = stringResource(R.string.label_register),
                     style = MaterialTheme.typography.titleMedium.copy(
                         color = MaterialTheme.colorScheme.primary
                     )
@@ -207,7 +161,6 @@ fun LoginScreen(
             }
         }
     }
-
 }
 
 @Preview(showSystemUi = true, showBackground = true)

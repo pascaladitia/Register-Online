@@ -20,6 +20,7 @@ import com.pascal.registeronline.ui.component.dialog.ShowDialog
 import com.pascal.registeronline.ui.component.screenUtils.LoadingScreen
 import com.pascal.registeronline.ui.component.screenUtils.hasLocationPermission
 import com.pascal.registeronline.ui.screen.login.state.LocalLoginEvent
+import com.pascal.registeronline.ui.screen.login.state.LoginEvent
 import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("LocalContextGetResourceValueCall")
@@ -31,8 +32,6 @@ fun LoginRoute(
     onLogin: () -> Unit
 ) {
     val context = LocalContext.current
-    val event = LocalLoginEvent.current
-
     val uiState by viewModel.uiState.collectAsState()
 
     BackHandler {
@@ -50,7 +49,7 @@ fun LoginRoute(
         )
     } else {
         rememberMultiplePermissionsState(
-                permissions = listOf(
+            permissions = listOf(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA,
@@ -81,18 +80,21 @@ fun LoginRoute(
     }
 
     CompositionLocalProvider(
-        LocalLoginEvent provides event.copy(
-            onLogin = { email, password ->
+        LocalLoginEvent provides LoginEvent(
+            onRegister = onRegister,
+            onLogin = onLogin,
+            onEmailChange = viewModel::onEmailChange,
+            onPasswordChange = viewModel::onPasswordChange,
+            onTogglePasswordVisibility = viewModel::onTogglePasswordVisibility,
+            onSubmit = {
                 if (!context.hasLocationPermission()) {
                     viewModel.showDialog(context.getString(R.string.message_permission_allow))
                 } else {
-                    viewModel.loadLogin(email, password)
+                    viewModel.onSubmit()
                 }
             }
         )
     ) {
-        LoginScreen(
-            uiState = uiState
-        )
+        LoginScreen(uiState = uiState)
     }
 }
