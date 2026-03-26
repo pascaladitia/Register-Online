@@ -107,6 +107,7 @@ fun HomeScreen(
         ) {
             ButtonComponent(
                 text = stringResource(R.string.label_tambah_data),
+                isIcon = 1,
                 icon = FeatherIcons.Plus
             ) {
                 event.onAddData()

@@ -54,7 +54,7 @@ fun ButtonComponent(
             if (isIcon == 1) {
                 Icon(
                     modifier = Modifier.size(24.dp),
-                    painter = painterResource(R.drawable.ic_launcher_background),
+                    imageVector = icon,
                     contentDescription = null,
                     tint = Color.White
                 )
@@ -99,7 +99,9 @@ fun ButtonOutlineComponent(
         shape = RoundedCornerShape(16.dp),
         onClick = { onClick() },
     ) {
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             if (isIcon == 1) {
                 Icon(
                     modifier = Modifier.size(24.dp),
