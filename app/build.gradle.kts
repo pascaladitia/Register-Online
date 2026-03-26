@@ -36,30 +36,23 @@ android {
 
     flavorDimensions += "environment"
     var baseUrl : String
-    var apiKey : String
 
     productFlavors {
         create("dev") {
-            baseUrl = "https://sample_url"
-            apiKey = "sample_api_key"
+            baseUrl = "https://api-test.partaiperindo.com/api/v1/"
             dimension = "environment"
-            buildConfigField("String", "API_KEY", "\"" + apiKey + "\"")
             buildConfigField("String", "BASE_URL", "\"" + baseUrl + "\"")
         }
 
         create("staging") {
-            baseUrl = "https://sample_url"
-            apiKey = "sample_api_key"
+            baseUrl = "https://api-test.partaiperindo.com/api/v1/"
             dimension = "environment"
-            buildConfigField("String", "API_KEY", "\"" + apiKey + "\"")
             buildConfigField("String", "BASE_URL", "\"" + baseUrl + "\"")
         }
 
         create("prod") {
-            baseUrl = "https://sample_url"
-            apiKey = "sample_api_key"
+            baseUrl = "https://api-test.partaiperindo.com/api/v1/"
             dimension = "environment"
-            buildConfigField("String", "API_KEY", "\"" + apiKey + "\"")
             buildConfigField("String", "BASE_URL", "\"" + baseUrl + "\"")
         }
     }

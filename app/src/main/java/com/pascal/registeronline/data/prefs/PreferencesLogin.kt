@@ -1,14 +1,34 @@
 package com.pascal.registeronline.data.prefs
 
 import android.content.Context
+import android.content.SharedPreferences
+import androidx.core.content.edit
 
 object PreferencesLogin {
 
     private const val PREFS_NAME = "login_prefs"
-    private const val IS_ADMIN = "is_admin"
+    private const val IS_SAVE_LOGIN = "is_save_login"
+    private const val ACCESS_TOKEN = "access_token"
 
-    fun getIsAdmin(context: Context): Boolean {
-        val sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        return sharedPreferences.getBoolean(IS_ADMIN, false)
+    private fun prefs(context: Context) =
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+    private inline fun edit(context: Context, block: SharedPreferences.Editor.() -> Unit) {
+        prefs(context).edit(commit = true, block)
     }
+
+    fun saveLoginData(context: Context, isSaveLogin: Boolean) =
+        edit(context) { putBoolean(IS_SAVE_LOGIN, isSaveLogin) }
+
+    fun saveAccessToken(context: Context, accessToken: String) =
+        edit(context) { putString(ACCESS_TOKEN, accessToken) }
+
+    fun getAccessToken(context: Context): String =
+        prefs(context).getString(ACCESS_TOKEN, "") ?: ""
+
+    fun getIsSaveLogin(context: Context): Boolean =
+        prefs(context).getBoolean(IS_SAVE_LOGIN, false)
+
+    fun clear(context: Context) =
+        edit(context) { clear() }
 }

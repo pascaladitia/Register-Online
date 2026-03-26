@@ -54,9 +54,7 @@ fun RouteScreen(
                 startDestination = Screen.SplashScreen.route,
             ) {
                 composable(route = Screen.SplashScreen.route) {
-                    SplashScreen(
-                        paddingValues = paddingValues
-                    ) {
+                    SplashScreen {
                         navController.navigate(Screen.HomeScreen.route) {
                             popUpTo(Screen.SplashScreen.route) {
                                 inclusive = true
