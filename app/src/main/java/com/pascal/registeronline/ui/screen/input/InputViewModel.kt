@@ -1,13 +1,11 @@
 package com.pascal.registeronline.ui.screen.input
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pascal.registeronline.data.local.entity.DraftEntity
 import com.pascal.registeronline.domain.usecase.local.LocalUseCase
 import com.pascal.registeronline.ui.screen.input.state.InputUiState
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -45,8 +43,13 @@ class InputViewModel(
 
     fun setDomisili(v: String) = update { copy(alamatDomisili = v) }
 
+    fun openGender() = update { copy(isGenderSheet = true to isStatusSheet.second) }
     fun openStatus() = update { copy(isStatusSheet = true to isStatusSheet.second) }
     fun dismissStatus() = update { copy(isStatusSheet = false to -1) }
+    fun dismissGender() = update { copy(isGenderSheet = false to -1) }
+
+    fun selectGender(index: Int, value: String) =
+        update { copy(gender = value, isGenderSheet = false to index) }
 
     fun selectStatus(index: Int, value: String) =
         update { copy(status = value, isStatusSheet = false to index) }

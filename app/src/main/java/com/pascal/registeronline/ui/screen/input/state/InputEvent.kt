@@ -26,8 +26,11 @@ data class InputEvent(
     val setSameAddress: (Boolean) -> Unit = {},
     val setDomisili: (String) -> Unit = {},
 
+    val openGender: () -> Unit = {},
     val openStatus: () -> Unit = {},
+    val dismissGender: () -> Unit = {},
     val dismissStatus: () -> Unit = {},
+    val selectGender: (Int, String) -> Unit = { _, _ -> },
     val selectStatus: (Int, String) -> Unit = { _, _ -> },
 
     val openPekerjaan: () -> Unit = {},

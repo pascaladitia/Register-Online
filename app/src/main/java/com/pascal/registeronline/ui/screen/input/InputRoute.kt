@@ -33,8 +33,11 @@ fun InputRoute(
         setKodePos = viewModel::setKodePos,
         setSameAddress = viewModel::setSameAddress,
         setDomisili = viewModel::setDomisili,
+        openGender = viewModel::openGender,
         openStatus = viewModel::openStatus,
+        dismissGender = viewModel::dismissGender,
         dismissStatus = viewModel::dismissStatus,
+        selectGender = viewModel::selectGender,
         selectStatus = viewModel::selectStatus,
         openPekerjaan = viewModel::openPekerjaan,
         dismissPekerjaan = viewModel::dismissPekerjaan,
@@ -43,6 +46,19 @@ fun InputRoute(
         openCameraSecondary = viewModel::openCameraSecondary,
         saveDraft = viewModel::saveDraft
     )
+
+    if (uiState.isGenderSheet.first) {
+        SelectedBottomSheet(
+            title = "Jenis Kelamin",
+            data = uiState.genderList,
+            selectedIndex = uiState.isGenderSheet.second,
+            itemText = { it.orEmpty() },
+            onSelect = { item, index ->
+                event.selectGender(index, item!!)
+            },
+            onDismiss = event.dismissGender
+        )
+    }
 
     if (uiState.isStatusSheet.first) {
         SelectedBottomSheet(

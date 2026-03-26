@@ -10,6 +10,11 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
 import android.widget.Toast
+import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.core.content.ContextCompat
 import com.pascal.registeronline.utils.Constant.FORMAT_DATE
 import java.io.IOException
@@ -74,4 +79,17 @@ fun checkInternet(context: Context): Boolean {
         }
     }
     return false
+}
+
+fun setMandatoryTitle(option: String?, isMandatory: Boolean = true): AnnotatedString {
+    val safeOption = option.orEmpty()
+
+    return buildAnnotatedString {
+        append(safeOption)
+        if (isMandatory) {
+            withStyle(style = SpanStyle(color = Red)) {
+                append("*")
+            }
+        }
+    }
 }
