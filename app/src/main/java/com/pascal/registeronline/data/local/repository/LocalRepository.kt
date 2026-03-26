@@ -1,6 +1,6 @@
 package com.pascal.registeronline.data.local.repository
 
-import com.pascal.registeronline.data.local.entity.FavoritesEntity
+import com.pascal.registeronline.data.local.entity.DraftEntity
 import com.pascal.registeronline.data.local.entity.ProfileEntity
 
 
@@ -10,9 +10,8 @@ interface LocalRepository {
     suspend fun deleteProfileById(item: ProfileEntity)
     suspend fun insertProfile(item: ProfileEntity)
 
-    suspend fun insertFavorite(entity: FavoritesEntity)
-    suspend fun deleteFavorite(entity: FavoritesEntity)
-    suspend fun getFavorite(): List<FavoritesEntity>?
-    suspend fun getFavorite(title: String): Boolean
-    suspend fun clearFavorite()
+    suspend fun insertDraft(entity: DraftEntity)
+    suspend fun deleteDraft(entity: DraftEntity)
+    suspend fun getDraft(): List<DraftEntity>?
+    suspend fun clearDraft()
 }

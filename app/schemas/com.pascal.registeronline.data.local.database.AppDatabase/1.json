@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cd7aed81a9fcf101435d7123d384c6bd",
+    "identityHash": "c495591fb38da89f04e05564a4915e1b",
     "entities": [
       {
         "tableName": "profiles",
@@ -53,82 +53,153 @@
         }
       },
       {
-        "tableName": "favorite",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`title` TEXT NOT NULL, `isExclusive` INTEGER, `image` TEXT, `label` TEXT, `description` TEXT, `author` TEXT, `category` TEXT, `imageDescription` TEXT, `mediaCount` INTEGER, `publishedTime` TEXT, `audio` TEXT, `share` TEXT, PRIMARY KEY(`title`))",
+        "tableName": "draft",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `nik` TEXT NOT NULL, `phone` TEXT NOT NULL, `birthPlace` TEXT NOT NULL, `birthDate` TEXT NOT NULL, `status` TEXT NOT NULL, `occupation` TEXT NOT NULL, `address` TEXT NOT NULL, `provinsi` TEXT NOT NULL, `kotaKabupaten` TEXT NOT NULL, `kecamatan` TEXT NOT NULL, `kelurahan` TEXT NOT NULL, `kodePos` TEXT NOT NULL, `alamatDomisili` TEXT NOT NULL, `provinsiDomisili` TEXT NOT NULL, `kotaKabupatenDomisili` TEXT NOT NULL, `kecamatanDomisili` TEXT NOT NULL, `kelurahanDomisili` TEXT NOT NULL, `kodePosDomisili` TEXT NOT NULL, `ktpFile` TEXT NOT NULL, `ktpFileSecondary` TEXT NOT NULL)",
         "fields": [
           {
-            "fieldPath": "title",
-            "columnName": "title",
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "isExclusive",
-            "columnName": "isExclusive",
-            "affinity": "INTEGER"
+            "fieldPath": "nik",
+            "columnName": "nik",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
-            "fieldPath": "image",
-            "columnName": "image",
-            "affinity": "TEXT"
+            "fieldPath": "phone",
+            "columnName": "phone",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
-            "fieldPath": "label",
-            "columnName": "label",
-            "affinity": "TEXT"
+            "fieldPath": "birthPlace",
+            "columnName": "birthPlace",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
-            "fieldPath": "description",
-            "columnName": "description",
-            "affinity": "TEXT"
+            "fieldPath": "birthDate",
+            "columnName": "birthDate",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
-            "fieldPath": "author",
-            "columnName": "author",
-            "affinity": "TEXT"
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
-            "fieldPath": "category",
-            "columnName": "category",
-            "affinity": "TEXT"
+            "fieldPath": "occupation",
+            "columnName": "occupation",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
-            "fieldPath": "imageDescription",
-            "columnName": "imageDescription",
-            "affinity": "TEXT"
+            "fieldPath": "address",
+            "columnName": "address",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
-            "fieldPath": "mediaCount",
-            "columnName": "mediaCount",
-            "affinity": "INTEGER"
+            "fieldPath": "provinsi",
+            "columnName": "provinsi",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
-            "fieldPath": "publishedTime",
-            "columnName": "publishedTime",
-            "affinity": "TEXT"
+            "fieldPath": "kotaKabupaten",
+            "columnName": "kotaKabupaten",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
-            "fieldPath": "audio",
-            "columnName": "audio",
-            "affinity": "TEXT"
+            "fieldPath": "kecamatan",
+            "columnName": "kecamatan",
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
-            "fieldPath": "share",
-            "columnName": "share",
-            "affinity": "TEXT"
+            "fieldPath": "kelurahan",
+            "columnName": "kelurahan",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kodePos",
+            "columnName": "kodePos",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "alamatDomisili",
+            "columnName": "alamatDomisili",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "provinsiDomisili",
+            "columnName": "provinsiDomisili",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kotaKabupatenDomisili",
+            "columnName": "kotaKabupatenDomisili",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kecamatanDomisili",
+            "columnName": "kecamatanDomisili",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kelurahanDomisili",
+            "columnName": "kelurahanDomisili",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kodePosDomisili",
+            "columnName": "kodePosDomisili",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ktpFile",
+            "columnName": "ktpFile",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ktpFileSecondary",
+            "columnName": "ktpFileSecondary",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
-          "autoGenerate": false,
+          "autoGenerate": true,
           "columnNames": [
-            "title"
+            "id"
           ]
         }
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cd7aed81a9fcf101435d7123d384c6bd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c495591fb38da89f04e05564a4915e1b')"
     ]
   }
 }

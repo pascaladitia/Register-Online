@@ -9,6 +9,7 @@ object PreferencesLogin {
     private const val PREFS_NAME = "login_prefs"
     private const val IS_SAVE_LOGIN = "is_save_login"
     private const val ACCESS_TOKEN = "access_token"
+    private const val PASSWORD = "password"
 
     private fun prefs(context: Context) =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -17,17 +18,23 @@ object PreferencesLogin {
         prefs(context).edit(commit = true, block)
     }
 
-    fun saveLoginData(context: Context, isSaveLogin: Boolean) =
+    fun saveIsLogin(context: Context, isSaveLogin: Boolean) =
         edit(context) { putBoolean(IS_SAVE_LOGIN, isSaveLogin) }
 
     fun saveAccessToken(context: Context, accessToken: String) =
         edit(context) { putString(ACCESS_TOKEN, accessToken) }
 
+    fun savePassword(context: Context, password: String) =
+        edit(context) { putString(PASSWORD, password) }
+
     fun getAccessToken(context: Context): String =
         prefs(context).getString(ACCESS_TOKEN, "") ?: ""
 
-    fun getIsSaveLogin(context: Context): Boolean =
+    fun getIsLogin(context: Context): Boolean =
         prefs(context).getBoolean(IS_SAVE_LOGIN, false)
+
+    fun getPassword(context: Context): String =
+        prefs(context).getString(PASSWORD, "") ?: ""
 
     fun clear(context: Context) =
         edit(context) { clear() }

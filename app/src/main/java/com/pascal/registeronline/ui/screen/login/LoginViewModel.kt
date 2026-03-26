@@ -1,7 +1,9 @@
 package com.pascal.registeronline.ui.screen.login
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pascal.registeronline.data.prefs.PreferencesLogin
 import com.pascal.registeronline.data.remote.dtos.login.LoginBody
 import com.pascal.registeronline.domain.usecase.remote.RemoteUseCase
 import com.pascal.registeronline.ui.screen.login.state.LoginUiState
@@ -13,6 +15,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
+    private val context: Application,
     private val remoteUseCase: RemoteUseCase
 ) : ViewModel() {
 
@@ -65,6 +68,11 @@ class LoginViewModel(
                     }
                 }
                 .collect {
+
+                    PreferencesLogin.saveIsLogin(context, true)
+                    PreferencesLogin.savePassword(context, password)
+                    PreferencesLogin.saveAccessToken(context, it.token)
+
                     _uiState.update {
                         it.copy(
                             isLoading = false,
