@@ -94,6 +94,7 @@ fun RouteScreen(
                     InputRoute(
                         onNavBack = {
                             navController.popBackStack()
+                            navController.navigate(Screen.HomeScreen.route)
                         }
                     )
                 }
