@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.pascal.registeronline.ui.screen.home.HomeScreen
 import com.pascal.registeronline.ui.screen.login.LoginRoute
 import com.pascal.registeronline.ui.screen.profile.ProfileScreen
+import com.pascal.registeronline.ui.screen.register.RegisterRoute
 import com.pascal.registeronline.ui.screen.splash.SplashScreen
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -50,7 +51,7 @@ fun RouteScreen(
                 composable(route = Screen.LoginScreen.route) {
                     LoginRoute(
                         onRegister = {
-
+                            navController.navigate(Screen.RegisterScreen.route)
                         },
                         onLogin = {
                             navController.navigate(Screen.HomeScreen.route) {
@@ -59,6 +60,13 @@ fun RouteScreen(
                                 }
                                 launchSingleTop = true
                             }
+                        }
+                    )
+                }
+                composable(route = Screen.RegisterScreen.route) {
+                    RegisterRoute(
+                        onLogin = {
+                            navController.popBackStack()
                         }
                     )
                 }

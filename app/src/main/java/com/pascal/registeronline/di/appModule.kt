@@ -16,6 +16,7 @@ import com.pascal.registeronline.domain.usecase.remote.RemoteUseCaseImpl
 import com.pascal.registeronline.ui.screen.home.HomeViewModel
 import com.pascal.registeronline.ui.screen.login.LoginViewModel
 import com.pascal.registeronline.ui.screen.profile.ProfileViewModel
+import com.pascal.registeronline.ui.screen.register.RegisterViewModel
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
@@ -58,6 +59,7 @@ val appModule = module {
 
     // ViewModels
     viewModelOf(::LoginViewModel)
+    viewModelOf(::RegisterViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::ProfileViewModel)
 }

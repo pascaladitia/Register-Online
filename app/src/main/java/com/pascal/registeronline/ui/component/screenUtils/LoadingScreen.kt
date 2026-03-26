@@ -30,7 +30,7 @@ fun LoadingScreen() {
         onDismissRequest = { },
     ) {
         val imageRequest = ImageRequest.Builder(LocalContext.current)
-            .data(R.drawable.loading1)
+            .data(R.drawable.ic_loading)
             .decoderFactory(GifDecoder.Factory())
             .crossfade(true)
             .build()
