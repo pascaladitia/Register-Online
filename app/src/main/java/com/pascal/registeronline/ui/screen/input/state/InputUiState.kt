@@ -39,6 +39,7 @@ data class InputUiState(
     val isStatusSheet: Pair<Boolean, Int> = false to -1,
     val isPekerjaanSheet: Pair<Boolean, Int> = false to -1,
 
+    val openBirthDate: Boolean = false,
     val openCameraPrimary: Boolean = false,
     val openCameraSecondary: Boolean = false,
 

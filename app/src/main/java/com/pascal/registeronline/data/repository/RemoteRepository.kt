@@ -3,6 +3,8 @@ package com.pascal.registeronline.data.repository
 import com.pascal.registeronline.data.remote.dtos.login.LoginBody
 import com.pascal.registeronline.data.remote.dtos.login.LoginResponse
 import com.pascal.registeronline.data.remote.dtos.member.MemberResponse
+import com.pascal.registeronline.data.remote.dtos.profile.ProfileBody
+import com.pascal.registeronline.data.remote.dtos.profile.ProfileResponse
 import com.pascal.registeronline.data.remote.dtos.register.RegisterBody
 import com.pascal.registeronline.data.remote.dtos.register.RegisterResponse
 import com.pascal.registeronline.data.remote.dtos.sync.SyncDataResponse
@@ -13,4 +15,5 @@ interface RemoteRepository {
     suspend fun login(body: LoginBody) : LoginResponse
     suspend fun syncData(content: MultiPartFormDataContent) : SyncDataResponse
     suspend fun getMember() : List<MemberResponse>
+    suspend fun getProfile(body: ProfileBody) : ProfileResponse
 }

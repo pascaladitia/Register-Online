@@ -7,10 +7,10 @@ import kotlinx.serialization.Serializable
 data class ProfileResponse(
 
 	@SerialName("id")
-	val id: Int? = null,
+	val id: String? = null,
 
 	@SerialName("full_name")
-	val fullName: Boolean? = null,
+	val fullName: String? = null,
 
 	@SerialName("email")
 	val email: String? = null

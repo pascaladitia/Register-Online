@@ -7,6 +7,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.pascal.registeronline.R
+import com.pascal.registeronline.ui.component.dialog.DatePickerComponent
 import com.pascal.registeronline.ui.component.dialog.ShowDialog
 import com.pascal.registeronline.ui.component.screenUtils.SelectedBottomSheet
 import com.pascal.registeronline.ui.screen.input.component.CameraScreen
@@ -37,6 +40,7 @@ fun InputRoute(
         setKodePos = viewModel::setKodePos,
         setSameAddress = viewModel::setSameAddress,
         setDomisili = viewModel::setDomisili,
+        openBirthDate = viewModel::openBirthDate,
         openGender = viewModel::openGender,
         openStatus = viewModel::openStatus,
         dismissGender = viewModel::dismissGender,
@@ -53,7 +57,7 @@ fun InputRoute(
 
     if (uiState.isGenderSheet.first) {
         SelectedBottomSheet(
-            title = "Jenis Kelamin",
+            title = stringResource(R.string.label_gender),
             data = uiState.genderList,
             selectedIndex = uiState.isGenderSheet.second,
             itemText = { it.orEmpty() },
@@ -66,7 +70,7 @@ fun InputRoute(
 
     if (uiState.isStatusSheet.first) {
         SelectedBottomSheet(
-            title = "Status",
+            title = stringResource(R.string.label_status),
             data = uiState.statusList,
             selectedIndex = uiState.isStatusSheet.second,
             itemText = { it.orEmpty() },
@@ -79,7 +83,7 @@ fun InputRoute(
 
     if (uiState.isPekerjaanSheet.first) {
         SelectedBottomSheet(
-            title = "Pekerjaan",
+            title = stringResource(R.string.label_job),
             data = uiState.pekerjaanList,
             selectedIndex = uiState.isPekerjaanSheet.second,
             itemText = { it.orEmpty() },
@@ -90,10 +94,21 @@ fun InputRoute(
         )
     }
 
+    if (uiState.openBirthDate) {
+        DatePickerComponent(
+            onDismiss = {
+                viewModel.dismissBirthDate()
+            },
+            onConfirm = {
+                event.setBirthDate(it)
+            }
+        )
+    }
+
     if (uiState.error.first) {
         ShowDialog(
             message = uiState.error.second,
-            textButton = "Tutup"
+            textButton = stringResource(R.string.label_close)
         ) {
             viewModel.hideDialog()
         }
@@ -101,8 +116,8 @@ fun InputRoute(
 
     if (uiState.isSuccess) {
         ShowDialog(
-            message = "Draft berhasil disimpan",
-            textButton = "Kembali"
+            message = stringResource(R.string.message_save_draft_success),
+            textButton = stringResource(R.string.label_back)
         ) {
             onNavBack()
         }

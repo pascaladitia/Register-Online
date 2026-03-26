@@ -4,6 +4,8 @@ import com.pascal.registeronline.data.remote.config.RemoteClientApi
 import com.pascal.registeronline.data.remote.dtos.login.LoginBody
 import com.pascal.registeronline.data.remote.dtos.login.LoginResponse
 import com.pascal.registeronline.data.remote.dtos.member.MemberResponse
+import com.pascal.registeronline.data.remote.dtos.profile.ProfileBody
+import com.pascal.registeronline.data.remote.dtos.profile.ProfileResponse
 import com.pascal.registeronline.data.remote.dtos.register.RegisterBody
 import com.pascal.registeronline.data.remote.dtos.register.RegisterResponse
 import com.pascal.registeronline.data.remote.dtos.sync.SyncDataResponse
@@ -29,5 +31,9 @@ class RemoteRepositoryImpl(
 
     override suspend fun getMember(): List<MemberResponse> {
         return api.getMember()
+    }
+
+    override suspend fun getProfile(body: ProfileBody): ProfileResponse {
+        return api.getProfile(body)
     }
 }

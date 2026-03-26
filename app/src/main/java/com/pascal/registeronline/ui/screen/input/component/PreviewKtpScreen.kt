@@ -12,8 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.pascal.registeronline.R
 
 @Composable
 fun PreviewKtpScreen(
@@ -39,7 +41,7 @@ fun PreviewKtpScreen(
             }
 
             Text(
-                text = "Tinjau Gambar",
+                text = stringResource(R.string.label_preview_image),
                 style = MaterialTheme.typography.titleMedium
             )
         }
@@ -47,7 +49,7 @@ fun PreviewKtpScreen(
         Spacer(Modifier.height(16.dp))
 
         Text(
-            text = "Pastikan foto KTP jelas dan mudah dibaca",
+            text = stringResource(R.string.message_prepare_upload_ktp),
             style = MaterialTheme.typography.bodySmall
         )
 
@@ -80,7 +82,7 @@ fun PreviewKtpScreen(
             Spacer(Modifier.width(8.dp))
 
             Text(
-                text = "Kualitas foto sudah baik",
+                text = stringResource(R.string.label_best_quality_foto),
                 style = MaterialTheme.typography.bodySmall
             )
         }
@@ -91,7 +93,7 @@ fun PreviewKtpScreen(
             modifier = Modifier.fillMaxWidth(),
             onClick = onUse
         ) {
-            Text("Gunakan foto ini")
+            Text(stringResource(R.string.label_use_this_photo))
         }
 
         Spacer(Modifier.height(8.dp))
@@ -100,7 +102,7 @@ fun PreviewKtpScreen(
             modifier = Modifier.fillMaxWidth(),
             onClick = onRetake
         ) {
-            Text("Ambil foto ulang")
+            Text(stringResource(R.string.label_retake_photo))
         }
     }
 }

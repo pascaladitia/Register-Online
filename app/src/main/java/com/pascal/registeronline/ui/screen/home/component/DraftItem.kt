@@ -1,7 +1,7 @@
 package com.pascal.registeronline.ui.screen.home.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -54,14 +54,15 @@ fun DraftItem(
             ) {
                 Box(
                     modifier = Modifier
+                        .size(20.dp)
                         .clip(RoundedCornerShape(4.dp))
-                        .background(MaterialTheme.colorScheme.primary.copy(0.2f))
+                        .background(MaterialTheme.colorScheme.primary.copy(0.1f))
                         .padding(2.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = "$index",
-                        style = MaterialTheme.typography.bodySmall.copy(
+                        style = MaterialTheme.typography.labelSmall.copy(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     )
@@ -185,7 +186,9 @@ fun DraftItem(
                             color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.Medium
                         ),
-                        modifier = Modifier.padding(8.dp)
+                        modifier = Modifier
+                            .clickable { onUpload() }
+                            .padding(8.dp)
                     )
                 }
             }

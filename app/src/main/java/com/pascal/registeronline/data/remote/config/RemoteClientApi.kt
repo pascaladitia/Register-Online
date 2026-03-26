@@ -3,6 +3,8 @@ package com.pascal.registeronline.data.remote.config
 import com.pascal.registeronline.data.remote.dtos.login.LoginBody
 import com.pascal.registeronline.data.remote.dtos.login.LoginResponse
 import com.pascal.registeronline.data.remote.dtos.member.MemberResponse
+import com.pascal.registeronline.data.remote.dtos.profile.ProfileBody
+import com.pascal.registeronline.data.remote.dtos.profile.ProfileResponse
 import com.pascal.registeronline.data.remote.dtos.register.RegisterBody
 import com.pascal.registeronline.data.remote.dtos.register.RegisterResponse
 import com.pascal.registeronline.data.remote.dtos.sync.SyncDataResponse
@@ -43,6 +45,13 @@ class RemoteClientApi(
     suspend fun getMember(): List<MemberResponse> {
         return client.get("member") {
             contentType(ContentType.Application.Json)
+        }.body()
+    }
+
+    suspend fun getProfile(body: ProfileBody): ProfileResponse {
+        return client.get("profile") {
+            contentType(ContentType.Application.Json)
+            setBody(body)
         }.body()
     }
 }
