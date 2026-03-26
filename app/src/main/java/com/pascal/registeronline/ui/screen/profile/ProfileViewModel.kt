@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pascal.registeronline.data.prefs.PreferencesLogin
 import com.pascal.registeronline.data.remote.dtos.profile.ProfileBody
+import com.pascal.registeronline.domain.usecase.local.LocalUseCase
 import com.pascal.registeronline.domain.usecase.remote.RemoteUseCase
 import com.pascal.registeronline.ui.screen.profile.state.ProfileUIState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +18,8 @@ import kotlinx.coroutines.launch
 class ProfileViewModel(
     private val context: Application,
     private val remoteUseCase: RemoteUseCase,
-): ViewModel() {
+    private val localUseCase: LocalUseCase
+    ): ViewModel() {
 
     private val _uiState = MutableStateFlow(ProfileUIState())
     val uiState: StateFlow<ProfileUIState> = _uiState.asStateFlow()
@@ -50,6 +52,36 @@ class ProfileViewModel(
                     }
                 }
         }
+    }
+
+    fun loadLogout() {
+        viewModelScope.launch {
+
+            _uiState.update { it.copy(isLoading = true) }
+
+            try {
+                PreferencesLogin.clear(context)
+                localUseCase.clearDraft()
+
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        isLogoutSuccess = true
+                    )
+                }
+            } catch (e: Exception) {
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        error = true to e.message.orEmpty()
+                    )
+                }
+            }
+        }
+    }
+
+    fun setLogoutDialog(show: Boolean) {
+        _uiState.update { it.copy(logoutDialog = show) }
     }
 
     fun hideDialog() {
