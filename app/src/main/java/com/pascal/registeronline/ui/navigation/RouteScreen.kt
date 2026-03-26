@@ -12,15 +12,14 @@ import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.constraintlayout.compose.ExperimentalMotionApi
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.pascal.registeronline.ui.screen.home.HomeScreen
+import com.pascal.registeronline.ui.screen.login.LoginRoute
 import com.pascal.registeronline.ui.screen.profile.ProfileScreen
 import com.pascal.registeronline.ui.screen.splash.SplashScreen
 
@@ -29,22 +28,7 @@ import com.pascal.registeronline.ui.screen.splash.SplashScreen
 fun RouteScreen(
     navController: NavHostController = rememberNavController(),
 ) {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
-
-    Scaffold(
-        bottomBar = {
-            if (currentRoute in listOf(
-                    Screen.HomeScreen.route,
-                    Screen.EPaperScreen.route,
-                    Screen.TTSScreen.route,
-                    Screen.BookScreen.route,
-                    Screen.ProfileScreen.route
-                )) {
-                BottomBar(navController)
-            }
-        }
-    ) { paddingValues ->
+    Scaffold { paddingValues ->
         SharedTransitionLayout {
             val sharedScope: SharedTransitionScope = this
 
@@ -55,13 +39,28 @@ fun RouteScreen(
             ) {
                 composable(route = Screen.SplashScreen.route) {
                     SplashScreen {
-                        navController.navigate(Screen.HomeScreen.route) {
+                        navController.navigate(Screen.LoginScreen.route) {
                             popUpTo(Screen.SplashScreen.route) {
                                 inclusive = true
                             }
                             launchSingleTop = true
                         }
                     }
+                }
+                composable(route = Screen.LoginScreen.route) {
+                    LoginRoute(
+                        onRegister = {
+
+                        },
+                        onLogin = {
+                            navController.navigate(Screen.HomeScreen.route) {
+                                popUpTo(Screen.LoginScreen.route) {
+                                    inclusive = true
+                                }
+                                launchSingleTop = true
+                            }
+                        }
+                    )
                 }
                 composable(route = Screen.HomeScreen.route) {
                     val animScope: AnimatedVisibilityScope = this
@@ -72,9 +71,7 @@ fun RouteScreen(
                 }
                 composable(route = Screen.ProfileScreen.route) {
                     ProfileScreen(
-                        onBookMark = {
-                            navController.navigate(Screen.BookmarkScreen.route)
-                        },
+                        onBookMark = {},
                     )
                 }
             }

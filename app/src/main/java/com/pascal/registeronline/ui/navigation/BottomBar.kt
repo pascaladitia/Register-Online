@@ -4,14 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.MenuBook
-import androidx.compose.material.icons.automirrored.filled.MenuBook
-import androidx.compose.material.icons.filled.Book
-import androidx.compose.material.icons.filled.Dashboard
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.outlined.Book
-import androidx.compose.material.icons.outlined.Dashboard
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Icon
@@ -50,24 +44,6 @@ fun BottomBar(
                     iconFilled = Icons.Filled.Home,
                     iconOutlined = Icons.Outlined.Home,
                     screen = Screen.HomeScreen
-                ),
-                NavigationItem(
-                    title = "ePaper",
-                    iconFilled = Icons.AutoMirrored.Filled.MenuBook,
-                    iconOutlined = Icons.AutoMirrored.Outlined.MenuBook,
-                    screen = Screen.EPaperScreen
-                ),
-                NavigationItem(
-                    title = "TTS",
-                    iconFilled = Icons.Filled.Dashboard,
-                    iconOutlined = Icons.Outlined.Dashboard,
-                    screen = Screen.TTSScreen
-                ),
-                NavigationItem(
-                    title = "Buku",
-                    iconFilled = Icons.Filled.Book,
-                    iconOutlined = Icons.Outlined.Book,
-                    screen = Screen.BookScreen
                 ),
                 NavigationItem(
                     title = "Profile",

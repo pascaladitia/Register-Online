@@ -38,6 +38,8 @@ object KtorClientFactory {
 
         return HttpClient(OkHttp) {
 
+            expectSuccess = true
+
             engine {
                 preconfigured = okHttpClient
             }

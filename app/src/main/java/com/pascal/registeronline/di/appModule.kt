@@ -14,6 +14,7 @@ import com.pascal.registeronline.domain.usecase.local.LocalUseCaseImpl
 import com.pascal.registeronline.domain.usecase.remote.RemoteUseCase
 import com.pascal.registeronline.domain.usecase.remote.RemoteUseCaseImpl
 import com.pascal.registeronline.ui.screen.home.HomeViewModel
+import com.pascal.registeronline.ui.screen.login.LoginViewModel
 import com.pascal.registeronline.ui.screen.profile.ProfileViewModel
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.Dispatchers
@@ -56,6 +57,7 @@ val appModule = module {
     singleOf(::RemoteUseCaseImpl) { bind<RemoteUseCase>() }
 
     // ViewModels
+    viewModelOf(::LoginViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::ProfileViewModel)
 }
