@@ -1,13 +1,16 @@
 package com.pascal.registeronline.ui.screen.home.state
 
-import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.animation.ExperimentalSharedTransitionApi
-import androidx.compose.animation.SharedTransitionScope
+import com.pascal.registeronline.data.local.entity.DraftEntity
+import com.pascal.registeronline.domain.model.Member
 
-@ExperimentalSharedTransitionApi
-data class HomeUIState(
+data class HomeUiState(
     val isLoading: Boolean = false,
     val error: Pair<Boolean, String> = false to "",
-    val sharedTransitionScope: SharedTransitionScope? = null,
-    val animatedVisibilityScope: AnimatedVisibilityScope? = null
+    val selectedTab: Int = 0,
+
+    val drafts: List<DraftEntity> = emptyList(),
+    val members: List<Member> = emptyList(),
+
+    val isUploadAllDialogVisible: Boolean = false,
+    val isUploadSuccess: Boolean = false,
 )

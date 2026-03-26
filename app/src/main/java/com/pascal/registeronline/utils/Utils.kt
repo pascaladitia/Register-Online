@@ -4,10 +4,17 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.Uri
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
 import android.widget.Toast
+import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.core.content.ContextCompat
 import com.pascal.registeronline.utils.Constant.FORMAT_DATE
 import java.io.IOException
@@ -23,31 +30,6 @@ fun getCurrentFormattedDate(): String {
     val currentDate = Calendar.getInstance().time
     val dateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
     return dateFormat.format(currentDate)
-}
-
-fun reFormatDate(date: String?): Pair<String?, String?> {
-    if (date.isNullOrBlank()) {
-        return Pair("", "")
-    }
-
-    try {
-        val inputFormat = SimpleDateFormat(FORMAT_DATE, Locale.getDefault())
-        val outputFormatDateMonth = SimpleDateFormat("MMM dd", Locale.getDefault())
-        val outputFormatYear = SimpleDateFormat("yyyy", Locale.getDefault())
-
-        val dateObject = inputFormat.parse(date)
-
-        if (dateObject != null) {
-            val formattedDateMonth = outputFormatDateMonth.format(dateObject)
-            val formattedYear = outputFormatYear.format(dateObject)
-
-            return Pair(formattedDateMonth, formattedYear)
-        }
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
-
-    return Pair("", "")
 }
 
 fun intentActionView(context: Context, url: String) {
@@ -81,4 +63,33 @@ private fun Uri.getFileExtension(contentResolver: ContentResolver): String {
     }
 
     return extension!!
+}
+
+fun checkInternet(context: Context): Boolean {
+    val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+    if (capabilities != null) {
+        if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+            return true
+        } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+            return true
+        } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+            return true
+        }
+    }
+    return false
+}
+
+fun setMandatoryTitle(option: String?, isMandatory: Boolean = true): AnnotatedString {
+    val safeOption = option.orEmpty()
+
+    return buildAnnotatedString {
+        append(safeOption)
+        if (isMandatory) {
+            withStyle(style = SpanStyle(color = Red)) {
+                append("*")
+            }
+        }
+    }
 }

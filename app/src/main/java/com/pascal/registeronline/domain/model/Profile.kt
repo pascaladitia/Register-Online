@@ -3,8 +3,8 @@ package com.pascal.registeronline.domain.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Dashboard(
-	val code: Int,
-	val success: Boolean,
-	val message: String
+data class Profile(
+	val id: String,
+	val fullName: String,
+	val email: String
 )

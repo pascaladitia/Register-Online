@@ -1,7 +1,7 @@
 package com.pascal.registeronline.data.local.repository
 
 import com.pascal.registeronline.data.local.database.AppDatabase
-import com.pascal.registeronline.data.local.entity.FavoritesEntity
+import com.pascal.registeronline.data.local.entity.DraftEntity
 import com.pascal.registeronline.data.local.entity.ProfileEntity
 import org.koin.core.annotation.Single
 
@@ -27,24 +27,20 @@ class LocalRepositoryImpl(
         return database.profileDao().insertProfile(item)
     }
 
-    // Favorites
-    override suspend fun insertFavorite(entity: FavoritesEntity) {
-        database.favoritesDao().insertFavorite(entity)
+    // Drafts
+    override suspend fun insertDraft(entity: DraftEntity) {
+        database.draftsDao().insertDraft(entity)
     }
 
-    override suspend fun deleteFavorite(entity: FavoritesEntity) {
-        database.favoritesDao().deleteFavorite(entity)
+    override suspend fun deleteDraft(entity: DraftEntity) {
+        database.draftsDao().deleteDraft(entity)
     }
 
-    override suspend fun getFavorite(): List<FavoritesEntity>? {
-        return database.favoritesDao().getFavoriteMovieList()
+    override suspend fun getDraft(): List<DraftEntity>? {
+        return database.draftsDao().getDraftList()
     }
 
-    override suspend fun getFavorite(title: String): Boolean {
-        return database.favoritesDao().getFavorite(title) != null
-    }
-
-    override suspend fun clearFavorite() {
-        return database.favoritesDao().clearFavoritesTable()
+    override suspend fun clearDraft() {
+        return database.draftsDao().clearDraftsTable()
     }
 }

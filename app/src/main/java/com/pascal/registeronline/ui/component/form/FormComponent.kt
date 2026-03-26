@@ -244,6 +244,7 @@ fun FormEmailComponent(
     title: String,
     hintText: String,
     isShowTitle: Boolean = true,
+    isMandatory: Boolean = false,
     value: String,
     onValueChange: (String) -> Unit,
     isError: Boolean
@@ -254,12 +255,22 @@ fun FormEmailComponent(
 
     Column {
         if (isShowTitle) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.labelSmall.copy(
-                    color = MaterialTheme.colorScheme.onSurface
+            Row {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.labelSmall.copy(
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
                 )
-            )
+                if (isMandatory) {
+                    Text(
+                        text = "*",
+                        style = MaterialTheme.typography.labelSmall.copy(
+                            color = Red
+                        )
+                    )
+                }
+            }
         }
 
         Spacer(modifier = Modifier.height(8.dp))
