@@ -1,4 +1,4 @@
-# 📱 Register Online App
+# 📱 Register Offline App
 
 Android app for **offline registration (draft)** and **online synchronization** using Kotlin + Jetpack Compose.
 
@@ -6,11 +6,9 @@ Android app for **offline registration (draft)** and **online synchronization** 
 
 ## 🚀 Demo
 <p align="center">
-  <iframe width="320" height="180"
-    src="https://your-video-link-here.com"
-    frameborder="0"
-    allowfullscreen>
-  </iframe>
+  <a href="https://github.com/user-attachments/assets/c6d3dd38-9145-4356-8198-50c27a81773b">
+    ▶️ Watch Demo Video
+  </a>
 </p>
 
 ---
